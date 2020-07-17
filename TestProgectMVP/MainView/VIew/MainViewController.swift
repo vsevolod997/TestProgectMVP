@@ -33,12 +33,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "textCell", for: indexPath)
         
-        cell.textLabel?.text = presenter.datas?[indexPath.row].data
+        //cell.textLabel?.text = presenter.datas?[indexPath.row].data
         return cell
     }
     
 }
-
 
 //MARK: - MainViewSentDataProtocol
 extension MainViewController: MainViewSentDataProtocol {

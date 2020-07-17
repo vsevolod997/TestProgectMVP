@@ -9,11 +9,13 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func getData(complition: @escaping(Result<[DataModel]?, Error>)->Void)
+    func getData(complition: @escaping(Result<[ResultModel]?, Error>)->Void)
 }
 
 class NetworkService: NetworkServiceProtocol {
-    func getData(complition: @escaping (Result<[DataModel]?, Error>) -> Void) {
+    let jsonConverter = JsonParseService()
+    
+    func getData(complition: @escaping (Result<[ResultModel]?, Error>) -> Void) {
         let urlString = "https://pryaniky.com/static/json/sample.json"
         guard let url = URL(string: urlString) else { return }
         
@@ -25,7 +27,11 @@ class NetworkService: NetworkServiceProtocol {
             
             if let data = data {
                 if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
-                    print(json)
+                    let obj = self.jsonConverter.convertJson(json: json)
+                    for o in obj {
+                        print(o.type, o.value)
+                    }
+                    complition(.success(obj))
                 }
             }
         }.resume()

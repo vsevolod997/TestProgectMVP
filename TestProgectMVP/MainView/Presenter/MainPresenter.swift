@@ -18,13 +18,13 @@ protocol MainViewPresenterProtocol: class {
     init(view: MainViewSentDataProtocol, networkService: NetworkServiceProtocol)
     
     func getData()
-    var datas: [DataModel]? { get set }
+    var datas: [Any]? { get set }
 }
 
 class MainPresenter: MainViewPresenterProtocol {
     weak var view: MainViewSentDataProtocol?
     
-    var datas: [DataModel]?
+    var datas: [Any]?
     let networkService: NetworkServiceProtocol
     
     required init(view: MainViewSentDataProtocol, networkService: NetworkServiceProtocol) {
