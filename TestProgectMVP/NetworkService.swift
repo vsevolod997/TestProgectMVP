@@ -28,9 +28,6 @@ class NetworkService: NetworkServiceProtocol {
             if let data = data {
                 if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
                     let obj = self.jsonConverter.convertJson(json: json)
-                    for o in obj {
-                        print(o.type, o.value)
-                    }
                     complition(.success(obj))
                 }
             }

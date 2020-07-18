@@ -38,8 +38,8 @@ class JsonParseService {
         }
         
         return createResultMass(value: valueDictionary, keyList: resultKey)
-        
     }
+    
     
     //MARK: - Private method
     fileprivate func createResultMass(value: Dictionary<TypeData, Any>, keyList: [String]) -> [ResultModel] {

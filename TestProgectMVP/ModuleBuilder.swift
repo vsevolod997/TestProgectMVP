@@ -18,12 +18,14 @@ class ModelBuilder: Builder {
     static func showMainView() -> UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         guard let view = sb.instantiateViewController(identifier: "mainVC") as? MainViewController else { return UIViewController() }
+        let navVC = UINavigationController(rootViewController: view)
+        
         let networkService = NetworkService()
     
         let presenter = MainPresenter(view: view, networkService: networkService)
         view.presenter = presenter
         view.presenter.getData()
         
-        return view
+        return navVC
     }
 }
